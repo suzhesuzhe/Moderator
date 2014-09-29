@@ -67,11 +67,12 @@ gem_aipew <- function(trt, response, designMatrix,type, both)
     result <- list("eta_gem" = alpha_gem,  # the transformed gem criteria(this is from the uncentered designMatrix )
      			   "alpha_gem" = gem[[2]],   # the original weight by the gem
                    "eta_aipew" = alpha_aipew, # the weight by aipew
-                   "constraintGem" = gem[[14]],  #constraint for the gem with the uncenteredZ
-                   "constraintAIPEW"= constraintAIPEW,
+                   "intersectGem" = gem[[14]],  #constraint for the gem with the uncenteredZ
+                   "intersectAIPEW"= constraintAIPEW,
     			   "E_aipew" = aipew,
-    			   "optPopuAverage"=gem[[8]],
-    			   "extendData"=dat)
+    			   "optPopuAverage"=gem[[13]],
+    			   "extendData"=dat,
+    			   "gemObject" =gem)
     return(result)
 }
 
