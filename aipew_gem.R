@@ -20,6 +20,7 @@ gem_aipew <- function(trt, response, designMatrix,type, both)
     mod <- lm(uncenteredYVector~trt+uncenteredZ+trt:uncenteredZ,data=dat)
     
     alpha_gem <- c(mod[[1]][2],mod[[1]][4]*gem[[2]])
+	signZ <- Sign(mod[[1]][4])
     alpha_gem <- alpha_gem/sqrt(sum(alpha_gem^2))
     if (both=="F")
     {
@@ -29,8 +30,8 @@ gem_aipew <- function(trt, response, designMatrix,type, both)
     }
     if (both=="T")
 	{
-    	eta_matrix <- rbind(cbind(seq(-1,1,0.01),1,0),cbind(seq(-1,1,0.01),-1,0))
-    	
+    	eta_matrix <- cbind(seq(-1,1,0.01),0,0)
+    	eta_matrix[,2] <- signZ * sqrt(1-eta_matrix[,1]^2)
     	for(i in 1:nrow(eta_matrix))
     	{
     		

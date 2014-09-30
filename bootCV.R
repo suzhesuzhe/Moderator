@@ -19,7 +19,7 @@ bootCv <- function(trt, response, designMatrix,type)
 	{
 		cat(i)
 		set.seed(i)
-		datReorder <- llply(datList,function(x){x[sample(1:nrow(x)),]})
+		datReorder <- llply(datList,function(x){x[sample(1:nrow(x),replace=T),]})
 		split0 <- split(1:N[[1]],rep(1:10,length.out=N[[1]]))
 		split1 <- split(1:N[[2]],rep(1:10,length.out=N[[2]]))
 		dat0List <- llply(split0,function(x){datReorder[[1]][x,]})
